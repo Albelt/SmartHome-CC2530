@@ -1,0 +1,265 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         02/Aug/2020  17:06:27 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zs #
+#                          tack\Samples\SampleApp\Source\Beep.c               #
+#    Command line       =  -f D:\Github\CC2530Projects\ZStack-2.5.1a\Projects #
+#                          \zstack\Samples\SampleApp\CC2530DB\..\..\..\Tools\ #
+#                          CC2530DB\f8wEndev.cfg (-DCPU32MHZ                  #
+#                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3         #
+#                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f          #
+#                          D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zs #
+#                          tack\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2 #
+#                          530DB\f8wConfig.cfg (-DZIGBEEPRO -DSECURE=0        #
+#                          -DZG_SECURE_DYNAMIC=0 -DREFLECTOR                  #
+#                          -DDEFAULT_CHANLIST=0x02000000                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0x1234                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=1000        #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 D:\Github\CC2530Projects\ZS #
+#                          tack-2.5.1a\Projects\zstack\Samples\SampleApp\Sour #
+#                          ce\Beep.c -D NWK_AUTO_POLL -D ZTOOL_P1 -D MT_TASK  #
+#                          -D MT_SYS_FUNC -D MT_ZDO_FUNC -D LCD_SUPPORTED -D  #
+#                          SENSOR_NODE -lC D:\Github\CC2530Projects\ZStack-2. #
+#                          5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\Se #
+#                          nsorNode\List\ -lA D:\Github\CC2530Projects\ZStack #
+#                          -2.5.1a\Projects\zstack\Samples\SampleApp\CC2530DB #
+#                          \SensorNode\List\ --diag_suppress Pe001,Pa010 -o   #
+#                          D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zs #
+#                          tack\Samples\SampleApp\CC2530DB\SensorNode\Obj\    #
+#                          -e --no_code_motion --debug --core=plain           #
+#                          --dptr=16,1 --data_model=large                     #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I D:\Github\CC2530Projects\Z #
+#                          Stack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\ -I D:\Github\CC2530Projects\ZStack-2.5.1a\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\Sourc #
+#                          e\ -I D:\Github\CC2530Projects\ZStack-2.5.1a\Proje #
+#                          cts\zstack\Samples\SampleApp\CC2530DB\..\..\..\ZMa #
+#                          in\TI2530DB\ -I D:\Github\CC2530Projects\ZStack-2. #
+#                          5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\Components\hal\include\ -I            #
+#                          D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zs #
+#                          tack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Com #
+#                          ponents\hal\target\CC2530EB\ -I                    #
+#                          D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zs #
+#                          tack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Com #
+#                          ponents\mac\include\ -I D:\Github\CC2530Projects\Z #
+#                          Stack-2.5.1a\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\..\..\..\..\..\Components\mac\high_level\    #
+#                          -I D:\Github\CC2530Projects\ZStack-2.5.1a\Projects #
+#                          \zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\ #
+#                          Components\mac\low_level\srf04\ -I                 #
+#                          D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zs #
+#                          tack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Com #
+#                          ponents\mac\low_level\srf04\single_chip\ -I        #
+#                          D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zs #
+#                          tack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Com #
+#                          ponents\mt\ -I D:\Github\CC2530Projects\ZStack-2.5 #
+#                          .1a\Projects\zstack\Samples\SampleApp\CC2530DB\..\ #
+#                          ..\..\..\..\Components\osal\include\ -I            #
+#                          D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zs #
+#                          tack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Com #
+#                          ponents\services\saddr\ -I                         #
+#                          D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zs #
+#                          tack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Com #
+#                          ponents\services\sdata\ -I                         #
+#                          D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zs #
+#                          tack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Com #
+#                          ponents\stack\af\ -I D:\Github\CC2530Projects\ZSta #
+#                          ck-2.5.1a\Projects\zstack\Samples\SampleApp\CC2530 #
+#                          DB\..\..\..\..\..\Components\stack\nwk\ -I         #
+#                          D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zs #
+#                          tack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Com #
+#                          ponents\stack\sapi\ -I D:\Github\CC2530Projects\ZS #
+#                          tack-2.5.1a\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\Components\stack\sec\ -I       #
+#                          D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zs #
+#                          tack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Com #
+#                          ponents\stack\sys\ -I D:\Github\CC2530Projects\ZSt #
+#                          ack-2.5.1a\Projects\zstack\Samples\SampleApp\CC253 #
+#                          0DB\..\..\..\..\..\Components\stack\zdo\ -I        #
+#                          D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zs #
+#                          tack\Samples\SampleApp\CC2530DB\..\..\..\..\..\Com #
+#                          ponents\zmac\ -I D:\Github\CC2530Projects\ZStack-2 #
+#                          .5.1a\Projects\zstack\Samples\SampleApp\CC2530DB\. #
+#                          .\..\..\..\..\Components\zmac\f8w\ -Ohz            #
+#    List file          =  D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zs #
+#                          tack\Samples\SampleApp\CC2530DB\SensorNode\List\Be #
+#                          ep.lst                                             #
+#    Object file        =  D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zs #
+#                          tack\Samples\SampleApp\CC2530DB\SensorNode\Obj\Bee #
+#                          p.r51                                              #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\Github\CC2530Projects\ZStack-2.5.1a\Projects\zstack\Samples\SampleApp\Source\Beep.c
+      1          #include "Beep.h"
+
+   \                                 In  segment SFR_AN, at 0xa0
+   \   union <unnamed> volatile __sfr _A_P2
+   \                     _A_P2:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf5
+   \   unsigned char volatile __sfr P2SEL
+   \                     P2SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xff
+   \   unsigned char volatile __sfr P2DIR
+   \                     P2DIR:
+   \   000000                DS 1
+      2          
+      3          #define DATA_PIN P2_0
+      4          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+      5          void BeepInit()
+   \                     BeepInit:
+      6          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+      7            P2SEL &= ~ 0x01;
+   \   000000   53F5FE       ANL     0xf5,#0xfe
+      8            P2DIR |=   0x01;
+   \   000003   43FF01       ORL     0xff,#0x1
+      9          }
+   \   000006   02....       LJMP    ?BRET
+   \   000009                REQUIRE P2SEL
+   \   000009                REQUIRE P2DIR
+     10          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     11          void Beep(u8 time)
+   \                     Beep:
+     12          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FF           MOV     R7,A
+     13            u8 i;
+     14            for(i=0; i<time; i++)
+   \   000007   7E00         MOV     R6,#0x0
+   \   000009   800E         SJMP    ??Beep_0
+     15            {
+     16          	DATA_PIN = 1;
+   \                     ??Beep_1:
+   \   00000B   D2A0         SETB    0xa0.0
+     17          	Delay10us();
+   \   00000D                ; Setup parameters for call to function Delay10us
+   \   00000D   12....       LCALL   ??Delay10us?relay
+     18          	DATA_PIN = 0;
+   \   000010   C2A0         CLR     0xa0.0
+     19          	Delay10us(); Delay10us(); Delay10us(); Delay10us(); Delay10us(); Delay10us(); Delay10us(); Delay10us();
+   \   000012                ; Setup parameters for call to function Delay10us
+   \   000012   12....       LCALL   ?Subroutine0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_0:
+   \   000015                ; Setup parameters for call to function Delay10us
+   \   000015   12....       LCALL   ?Subroutine0 & 0xFFFF
+     20            }
+   \                     ??CrossCallReturnLabel_1:
+   \   000018   0E           INC     R6
+   \                     ??Beep_0:
+   \   000019   EE           MOV     A,R6
+   \   00001A   C3           CLR     C
+   \   00001B   9F           SUBB    A,R7
+   \   00001C   40ED         JC      ??Beep_1
+     21          }
+   \   00001E   7F01         MOV     R7,#0x1
+   \   000020   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   000023                REQUIRE _A_P2
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   12....       LCALL   ??Delay10us?relay
+   \   000003                ; Setup parameters for call to function Delay10us
+   \   000003                ; Setup parameters for call to function Delay10us
+   \   000003   12....       LCALL   ??Delay10us?relay
+   \   000006                ; Setup parameters for call to function Delay10us
+   \   000006                ; Setup parameters for call to function Delay10us
+   \   000006   12....       LCALL   ??Delay10us?relay
+   \   000009                ; Setup parameters for call to function Delay10us
+   \   000009                ; Setup parameters for call to function Delay10us
+   \   000009   12....       LCALL   ??Delay10us?relay
+   \   00000C   22           RET
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??BeepInit?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    BeepInit
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Beep?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Beep
+
+   Maximum stack usage in bytes:
+
+     Function       ISTACK PSTACK XSTACK
+     --------       ------ ------ ------
+     Beep               0      0      9
+       -> Delay10us     0      0     18
+       -> Delay10us     0      0     18
+       -> Delay10us     0      0     18
+       -> Delay10us     0      0     18
+       -> Delay10us     0      0     18
+       -> Delay10us     0      0     18
+       -> Delay10us     0      0     18
+       -> Delay10us     0      0     18
+       -> Delay10us     0      0     18
+     BeepInit           0      0      0
+
+
+   Segment part sizes:
+
+     Function/Label   Bytes
+     --------------   -----
+     _A_P2               1
+     P2SEL               1
+     P2DIR               1
+     BeepInit            9
+     Beep               35
+     ?Subroutine0       13
+     ??BeepInit?relay    6
+     ??Beep?relay        6
+
+ 
+ 57 bytes in segment BANKED_CODE
+ 12 bytes in segment BANK_RELAYS
+  3 bytes in segment SFR_AN
+ 
+ 69 bytes of CODE memory
+  0 bytes of DATA memory (+ 3 bytes shared)
+
+Errors: none
+Warnings: none

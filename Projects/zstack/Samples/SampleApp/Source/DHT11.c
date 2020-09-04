@@ -1,0 +1,106 @@
+#include <ioCC2530.h>
+#include "General.h"
+#include "OnBoard.h"
+
+typedef unsigned char uchar;
+typedef unsigned int  uint;
+
+#define DATA_PIN P0_7
+
+//温湿度定义
+uchar ucharFLAG,uchartemp;
+uchar ucharT_data_H,ucharT_data_L,ucharRH_data_H,ucharRH_data_L,ucharcheckdata;
+uchar ucharT_data_H_temp,ucharT_data_L_temp,ucharRH_data_H_temp,ucharRH_data_L_temp,ucharcheckdata_temp;
+uchar ucharcomdata;
+
+//延时函数
+void Delay_us() //1 us延时
+{
+  MicroWait(1); 
+}
+
+void Delay_10us() //10 us延时
+{
+  MicroWait(10); 
+}
+
+void Delay_ms(uint Time)//n ms延时
+{
+    unsigned char i;
+    while(Time--)
+    {
+        for(i=0;i<100;i++)
+            Delay_10us();
+    }
+}
+
+//温湿度传感
+void COM(void)    // 温湿写入
+{     
+    uchar i;         
+    for(i=0;i<8;i++)    
+    {
+        ucharFLAG=2; 
+        while((!DATA_PIN)&&ucharFLAG++);
+        Delay_10us();
+        Delay_10us();
+        Delay_10us();
+        uchartemp=0;
+        if(DATA_PIN)uchartemp=1;
+        ucharFLAG=2;
+        while((DATA_PIN)&&ucharFLAG++);   
+        if(ucharFLAG==1)break;    
+        ucharcomdata<<=1;
+        ucharcomdata|=uchartemp; 
+    }    
+}
+
+void DHT11Init()
+{
+    P0SEL &= ~ 0x80;
+    P0DIR &= ~ 0x80;
+}
+
+void DHT11(uchar *temp, uchar *humid)   
+{
+    DATA_PIN=0;
+    Delay_ms(19);  //>18MS
+    DATA_PIN=1; 
+    P0DIR &= ~0x80; //重新配置IO口方向
+    Delay_10us();
+    Delay_10us();                        
+    Delay_10us();
+    Delay_10us();  
+    if(!DATA_PIN) 
+    {
+        ucharFLAG=2; 
+        while((!DATA_PIN)&&ucharFLAG++);
+        ucharFLAG=2;
+        while((DATA_PIN)&&ucharFLAG++); 
+        COM();
+        ucharRH_data_H_temp=ucharcomdata;
+        COM();
+        ucharRH_data_L_temp=ucharcomdata;
+        COM();
+        ucharT_data_H_temp=ucharcomdata;
+        COM();
+        ucharT_data_L_temp=ucharcomdata;
+        COM();
+        ucharcheckdata_temp=ucharcomdata;
+        DATA_PIN=1; 
+        uchartemp=(ucharT_data_H_temp+ucharT_data_L_temp+ucharRH_data_H_temp+ucharRH_data_L_temp);
+        if(uchartemp==ucharcheckdata_temp)
+        {
+            *humid=ucharRH_data_H_temp;
+            *temp=ucharT_data_H_temp;
+        }   
+    } 
+    else //没用成功读取，返回0
+    {
+            *humid = 0;
+			*temp = 0;
+    } 
+    
+    P0DIR |= 0x80; //IO口需要重新配置 
+	Delay_ms(1000);
+}
